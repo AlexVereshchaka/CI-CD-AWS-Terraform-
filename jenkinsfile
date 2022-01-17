@@ -1,7 +1,7 @@
 pipeline {
     //set variables
   environment { 
-    imagename = "AlexDemo1"
+    imagename = "alexdemo1"
     //cred to access to docker hub 
     registryCredential = 'docker-hub-cred'
   }
