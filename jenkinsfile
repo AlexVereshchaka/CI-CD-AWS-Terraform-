@@ -10,7 +10,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git([url: 'git@github.com:Yagorus/TestWebDeploy.git', branch: 'main', credentialsId: 'github-ssh-key-demo'])
+        git([url: 'git@github.com:Yagorus/TestWebDeploy.git', branch: 'main', credentialsId: 'ssh-key-git'])
       }
     }
     stage('Building Image') {
