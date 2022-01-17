@@ -30,10 +30,9 @@ pipeline {
       }
     }
     stage('ansible'){
-    agent any
         steps{
             script{
-                ansible all -m sh -a docker service update --image "alexprod/alexdemo:static alexdemo1"
+                ansible all -m sh -a "docker service update --image alexprod/alexdemo:static alexdemo1
             }
         }
     }
