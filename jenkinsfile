@@ -33,7 +33,7 @@ pipeline {
     agent any
         steps{
             script{
-                ansible all -m shell -a 'ddocker service update --force alexdemo2
+                ansible all -m shell -a 'ddocker service update --force alexdemo2'
             }
         }
     }
