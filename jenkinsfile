@@ -1,16 +1,16 @@
 pipeline {
     //set variables
   environment { 
-    imagename = "alexprod/alexdemo"
+    imagename = "yagorus/first_demo"
     //cred to access to docker hub 
-    registryCredential = 'dockerhub'
+    registryCredential = 'docker-hub-cred'
   }
   //agent == machina (nodes) | any == any all machine (nodes)
   agent any
   stages {
     stage('Cloning Git') {
       steps {
-        git([url: 'git@github.com:AlexVereshchaka/Demo1.git', branch: 'main', credentialsId: 'ssh-key-git'])
+        git([url: 'git@github.com:Yagorus/TestWebDeploy.git', branch: 'main', credentialsId: 'github-ssh-key-demo'])
       }
     }
     stage('Building image') {
@@ -32,11 +32,10 @@ pipeline {
     stage('ansible'){
         steps{
             script{
-                ansible all -m sh -a "docker service update --image alexprod/alexdemo:static alexdemo1"
+                ansible all -m shell -a "docker service update --image alexprod/alexdemo:static alexdemo1"
             }
         }
     }
     
     
-    }
   }
