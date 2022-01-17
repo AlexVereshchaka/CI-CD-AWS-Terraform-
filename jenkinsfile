@@ -32,10 +32,10 @@ pipeline {
     stage('ansible'){
         steps{
             script{
-                ansible all -m shell -a "docker service update --alexprod/alexdemo:static"
+                ansible all -m shell -a 'docker service update --alexprod/alexdemo:static'
             }
         }
     }
     
-    
+    }
   }
