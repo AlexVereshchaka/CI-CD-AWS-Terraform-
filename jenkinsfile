@@ -1,9 +1,9 @@
 pipeline {
     //set variables
   environment { 
-    imagename = "alexdemo1"
+    imagename = "alexprod/alexdemo"
     //cred to access to docker hub 
-    registryCredential = 'docker-hub-cred'
+    registryCredential = 'dockerhub'
   }
   //agent == machina (nodes) | any == any all machine (nodes)
   agent any
