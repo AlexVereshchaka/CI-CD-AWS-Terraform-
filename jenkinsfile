@@ -1,9 +1,9 @@
 pipeline {
     //set variables
   environment { 
-    imagename = "yagorus/first_demo"
+    imagename = "alexprod/first_demo"
     //cred to access to docker hub 
-    registryCredential = 'docker-hub-cred'
+    registryCredential = 'dockerhub'
   }
   //agent == machina (nodes) | any == any all machine (nodes)
   agent any
@@ -13,7 +13,7 @@ pipeline {
         git([url: 'git@github.com:Yagorus/TestWebDeploy.git', branch: 'main', credentialsId: 'github-ssh-key-demo'])
       }
     }
-    stage('Building image') {
+    stage('Building Image') {
       steps{
         script {
           dockerImage = docker.build imagename
@@ -37,5 +37,5 @@ pipeline {
         }
     }
     
-   } 
+  }
   }
