@@ -1,11 +1,8 @@
 pipeline {
-    //set variables
   environment { 
     imagename = "yagorus/first_demo"
-    //cred to access to docker hub 
     registryCredential = 'docker-hub-cred'
   }
-  //agent == machina (nodes) | any == any all machine (nodes)
   agent any
   stages {
     stage('Cloning Git') {
