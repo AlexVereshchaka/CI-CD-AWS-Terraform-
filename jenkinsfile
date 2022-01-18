@@ -1,0 +1,41 @@
+pipeline {
+    //set variables
+  environment { 
+    imagename = "alexprod/first_demo"
+    //cred to access to docker hub 
+    registryCredential = 'dockerhub'
+  }
+  //agent == machina (nodes) | any == any all machine (nodes)
+  agent any
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git([url: 'git@github.com:Yagorus/TestWebDeploy.git', branch: 'main', credentialsId: 'ssh-key-git'])
+      }
+    }
+    stage('Building Image') {
+      steps{
+        script {
+          dockerImage = docker.build imagename
+        }
+      }
+    }
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+             dockerImage.push('static')
+          }
+        }
+      }
+    }
+    stage('ansible'){
+        steps{
+            script{
+                ansible all -m shell -a "docker service update --image alexprod/alexdemo:static alexdemo"
+            }
+        }
+    }
+    
+    }
+  }
